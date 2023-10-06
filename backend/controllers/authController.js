@@ -16,7 +16,6 @@ const registerController = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
     req.body.password = hashedPassword;
-    //rest data
     const user = new userModel(req.body);
     await user.save();
     return res.status(201).send({
@@ -44,7 +43,7 @@ const loginController = async (req, res) => {
         message: "Invalid Credentials",
       });
     }
-    //check role
+  
     if (user.role !== req.body.role) {
       return res.status(500).send({
         success: false,
