@@ -7,7 +7,7 @@ export const userLogin = createAsyncThunk(
   async ({ role, email, password }, { rejectWithValue }) => {
     try {
       const { data } = await API.post("/auth/login", { role, email, password });
-      //store token
+     
       if (data.success) {
         alert(data.message);
         localStorage.setItem("token", data.token);
@@ -24,7 +24,6 @@ export const userLogin = createAsyncThunk(
   }
 );
 
-//register
 export const userRegister = createAsyncThunk(
   "auth/register",
   async (
@@ -56,7 +55,6 @@ export const userRegister = createAsyncThunk(
       if (data?.success) {
         alert("User Registerd Successfully");
         window.location.replace("/login");
-        // toast.success("User Registerd Successfully");
       }
     } catch (error) {
       console.log(error);
@@ -69,7 +67,6 @@ export const userRegister = createAsyncThunk(
   }
 );
 
-//current user
 export const getCurrentUser = createAsyncThunk(
   "auth/getCurrentUser",
   async ({ rejectWithValue }) => {
