@@ -5,14 +5,14 @@ const jwt = require("jsonwebtoken");
 const registerController = async (req, res) => {
   try {
     const exisitingUser = await userModel.findOne({ email: req.body.email });
-    //validation
+ 
     if (exisitingUser) {
       return res.status(200).send({
         success: false,
         message: "User ALready exists",
       });
     }
-    //hash password
+
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
     req.body.password = hashedPassword;
@@ -34,7 +34,7 @@ const registerController = async (req, res) => {
   }
 };
 
-//login call back
+
 const loginController = async (req, res) => {
   try {
     const user = await userModel.findOne({ email: req.body.email });
@@ -51,7 +51,7 @@ const loginController = async (req, res) => {
         message: "role dosent match",
       });
     }
-    //compare password
+  
     const comparePassword = await bcrypt.compare(
       req.body.password,
       user.password
@@ -81,7 +81,7 @@ const loginController = async (req, res) => {
   }
 };
 
-//GET CURRENT USER
+
 const currentUserController = async (req, res) => {
   try {
     const user = await userModel.findOne({ _id: req.body.userId });
