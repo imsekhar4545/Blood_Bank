@@ -1,6 +1,6 @@
 const userModel = require("../models/userModel");
 
-//GET DONAR LIST
+
 const getDonarsListController = async (req, res) => {
   try {
     const donarData = await userModel
@@ -22,7 +22,7 @@ const getDonarsListController = async (req, res) => {
     });
   }
 };
-//GET HOSPITAL LIST
+
 const getHospitalListController = async (req, res) => {
   try {
     const hospitalData = await userModel
@@ -44,7 +44,7 @@ const getHospitalListController = async (req, res) => {
     });
   }
 };
-//GET ORG LIST
+
 const getOrgListController = async (req, res) => {
   try {
     const orgData = await userModel
@@ -66,9 +66,7 @@ const getOrgListController = async (req, res) => {
     });
   }
 };
-// =======================================
 
-//DELETE DONAR
 const deleteDonarController = async (req, res) => {
   try {
     await userModel.findByIdAndDelete(req.params.id);
@@ -85,8 +83,6 @@ const deleteDonarController = async (req, res) => {
     });
   }
 };
-
-//EXPORT
 module.exports = {
   getDonarsListController,
   getHospitalListController,
